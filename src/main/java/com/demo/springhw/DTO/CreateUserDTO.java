@@ -15,4 +15,5 @@ public class CreateUserDTO implements Serializable {
     private String name;
     private String role;
     private Integer age;
+    private Set<Permission> permissions;
 }

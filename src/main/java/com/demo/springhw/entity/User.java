@@ -1,12 +1,15 @@
 package com.demo.springhw.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,16 +24,17 @@ public class User implements Serializable{
     private String name;
     private String role;
     private int age;
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(
-            name = "tblAuthorization")
-    @JsonIgnore
-    Set<Permission> permissions;
+            name = "tblAuthorization",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "permission_id"))
+    Set<Permission> permissions = new HashSet<>();
 
-    public User(String name, String role, int age) {
+    public User(String name, String role, int age, Set<Permission> permissions) {
         this.name = name;
         this.role = role;
         this.age = age;
+        this.permissions = permissions;
     }
-
 }

@@ -22,33 +22,22 @@ public class Database {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
-                User userA = new User("Nam Nguyen","admin",17);
-                User userB = new User("Nam Nguyen 2","member",18);
-                User userC = new User("Nam Nguyen 3","super admin",19);
-                User userD = new User("Nam Nguyen 4","sub-admin",20);
+
                 Permission permissionA = new Permission("access DB");
                 Permission permissionB = new Permission("access git");
                 Permission permissionC = new Permission("access network");
-
+                User userA = new User("Nam Nguyen","admin",17,Set.of(permissionA,permissionB,permissionC));
+                User userB = new User("Nam Nguyen 2","member",18,Set.of(permissionA,permissionB));
+                User userC = new User("Nam Nguyen 3","super admin",19,Set.of(permissionB,permissionC));
+                User userD = new User("Nam Nguyen 4","sub-admin",20,Set.of(permissionA));
                 logger.info("insert data: "+permissionRepository.save(permissionA));
                 logger.info("insert data: "+permissionRepository.save(permissionB));
                 logger.info("insert data: "+permissionRepository.save(permissionC));
-                userA.setPermissions(Set.of(permissionA,permissionB,permissionC));
-                userB.setPermissions(Set.of(permissionA,permissionB));
-                userC.setPermissions(Set.of(permissionB,permissionC));
-                userD.setPermissions(Set.of(permissionA));
-//                userA.getPermissions().add(permissionA);
-//                userA.getPermissions().add(permissionB);
-//                userB.getPermissions().add(permissionC);
-//                userC.getPermissions().add(permissionC);
                 logger.info("--------------------");
                 logger.info("insert data: "+userRepository.save(userA));
                 logger.info("insert data: "+userRepository.save(userB));
                 logger.info("insert data: "+userRepository.save(userC));
                 logger.info("insert data: "+userRepository.save(userD));
-
-
-
             }
         };
     }

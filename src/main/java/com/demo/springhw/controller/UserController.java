@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping("/permission-header")
-    public ResponseObject getPermissionHeader(@RequestHeader (name = "actionName") String actionName) {
-        return new ResponseObject("OK", "List data", actionName);
+    public ResponseObject getPermissionHeader(@RequestHeader (name = "permission_id") Long id) {
+        return new ResponseObject("OK", "List data", userService.findUserByPermissionId(id));
     }
 }
