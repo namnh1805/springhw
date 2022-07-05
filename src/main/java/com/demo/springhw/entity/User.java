@@ -9,6 +9,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,6 +31,9 @@ public class User implements Serializable{
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "permission_id"))
     Set<Permission> permissions = new HashSet<>();
+
+    @OneToMany(mappedBy = "tblUser")
+    Set<Document> documents;
 
     public User(String name, String role, int age, Set<Permission> permissions) {
         this.name = name;
