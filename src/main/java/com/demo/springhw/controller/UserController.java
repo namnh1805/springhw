@@ -28,6 +28,7 @@ public class UserController {
     @Value("${pagination.readFromFile}")
     String readFromFile;
 
+
     @GetMapping
     public ResponseObject getListUser() {
         return new ResponseObject("OK", "List data", userService.getListUser());
@@ -49,9 +50,9 @@ public class UserController {
                                       @RequestParam (value= "sizeParam",required = false) Integer sizeParam){
 
         if("true".equals(readFromFile)){
-            return new ResponseObject("OK", "List data", userService.getPageUser(Integer.parseInt(page),Integer.parseInt(size)));
+            return new ResponseObject(System.getenv("status"), "List data", userService.getPageUser(Integer.parseInt(page),Integer.parseInt(size)));
         }else{
-            return new ResponseObject("OK", "List data", userService.getPageUser(pageParam,sizeParam));
+            return new ResponseObject(System.getenv("status"), "List data", userService.getPageUser(pageParam,sizeParam));
         }
     }
 }
