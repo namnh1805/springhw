@@ -7,6 +7,8 @@ import com.demo.springhw.repository.PermissionRepository;
 import com.demo.springhw.repository.UserRepository;
 import com.demo.springhw.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,6 +28,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getListUser() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public Page<User> getPageUser(int page, int size) {
+        Page<User> pageUser = userRepository.findAll(PageRequest.of(page, size));
+        return pageUser;
     }
 
     @Override

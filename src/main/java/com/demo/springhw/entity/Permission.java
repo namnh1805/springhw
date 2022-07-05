@@ -25,7 +25,7 @@ public class Permission{
     private Long id;
     private String action;
 
-    @ManyToMany(mappedBy = "permissions",cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "permissions",cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JsonIgnore
     List<User> users = new ArrayList<>();
 

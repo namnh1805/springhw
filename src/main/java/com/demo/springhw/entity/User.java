@@ -24,7 +24,7 @@ public class User implements Serializable{
     private String name;
     private String role;
     private int age;
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(
             name = "tblAuthorization",
     joinColumns = @JoinColumn(name = "user_id"),
