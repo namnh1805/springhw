@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 public class UserController {
     @Autowired
     UserService userService;
+
     @Value("${pagination.page}")
     String page;
     @Value("${pagination.size}")
@@ -46,8 +47,8 @@ public class UserController {
     }
 
     @GetMapping("/test-page")
-    public ResponseObject getPageUser(@RequestParam (value = "pageParam" ,required = false) Integer pageParam,
-                                      @RequestParam (value= "sizeParam",required = false) Integer sizeParam){
+    public ResponseObject getPageUser(@RequestParam (value = "pageParam" ,defaultValue = "0",required = false) Integer pageParam,
+                                      @RequestParam (value= "sizeParam",defaultValue = "5" ,required = false) Integer sizeParam){
 
         if("true".equals(readFromFile)){
             return new ResponseObject(System.getenv("status"), "List data", userService.getPageUser(Integer.parseInt(page),Integer.parseInt(size)));

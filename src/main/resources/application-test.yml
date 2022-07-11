@@ -1,0 +1,6 @@
+server:
+  port: 8811
+pagination:
+  page: 2
+  size: 2
+  readFromFile: true

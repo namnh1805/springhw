@@ -32,7 +32,7 @@ public class User implements Serializable{
     inverseJoinColumns = @JoinColumn(name = "permission_id"))
     Set<Permission> permissions = new HashSet<>();
 
-    @OneToMany(mappedBy = "tblUser")
+    @OneToMany(mappedBy = "user")
     Set<Document> documents;
 
     public User(String name, String role, int age, Set<Permission> permissions) {

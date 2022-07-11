@@ -1,0 +1,6 @@
+server:
+    port: 8888
+pagination:
+    page: 1
+    size: 3
+    readFromFile: false
