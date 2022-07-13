@@ -1,5 +1,6 @@
 package com.demo.springhw.DTO;
 
+import com.demo.springhw.entity.Document;
 import com.demo.springhw.entity.Permission;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,7 @@ public class CreateUserDTO implements Serializable {
     private String role;
     private Integer age;
     private Set<Permission> permissions;
+    private Set<Document> documents;
 }
 
 

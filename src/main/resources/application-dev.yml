@@ -1,5 +1,5 @@
 server:
-    port: 8888
+    port: 8811
 pagination:
     page: 1
     size: 3
