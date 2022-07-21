@@ -17,11 +17,16 @@ import java.util.List;
 @Table(name="tblDocument")
 public class Document {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nameDocument;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @Column(name = "document_name")
+    private String documentName;
+    public Document(String documentName) {
+        this.documentName = documentName;
+    }
+
+
+    @OneToOne(mappedBy = "document")
     private User user;
 }

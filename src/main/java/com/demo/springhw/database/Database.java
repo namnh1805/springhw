@@ -1,7 +1,9 @@
 package com.demo.springhw.database;
 
+import com.demo.springhw.entity.Document;
 import com.demo.springhw.entity.Permission;
 import com.demo.springhw.entity.User;
+import com.demo.springhw.repository.DocumentRepository;
 import com.demo.springhw.repository.PermissionRepository;
 import com.demo.springhw.repository.UserRepository;
 
@@ -20,10 +22,11 @@ public class Database {
     //logger
     private static final Logger logger = LoggerFactory.getLogger(Database.class);
     @Bean
-    CommandLineRunner initDatabase(UserRepository userRepository, PermissionRepository permissionRepository) {
+    CommandLineRunner initDatabase(UserRepository userRepository, PermissionRepository permissionRepository, DocumentRepository documentRepository) {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
+
 
                 Permission permissionA = new Permission("access DB");
                 Permission permissionB = new Permission("access git");
@@ -50,6 +53,12 @@ public class Database {
                 User userBb = new User("Nam Nguyen 32","member",18,Set.of(permissionA,permissionB));
                 User userCa = new User("Nam Nguyen 33","super admin",19,Set.of(permissionB,permissionC));
                 User userDa = new User("Nam Nguyen 34","sub-admin",20,Set.of(permissionA));
+                Document document1 = new Document("a");
+                Document document2 = new Document("b");
+                Document document3 = new Document("c");
+                logger.info("insert data: "+documentRepository.save(document1));
+                logger.info("insert data: "+documentRepository.save(document2));
+                logger.info("insert data: "+documentRepository.save(document3));
 
                 logger.info("insert data: "+permissionRepository.save(permissionA));
                 logger.info("insert data: "+permissionRepository.save(permissionB));

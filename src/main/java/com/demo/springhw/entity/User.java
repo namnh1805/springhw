@@ -32,8 +32,6 @@ public class User implements Serializable{
     inverseJoinColumns = @JoinColumn(name = "permission_id"))
     Set<Permission> permissions = new HashSet<>();
 
-    @OneToMany(mappedBy = "user")
-    Set<Document> documents;
 
     public User(String name, String role, int age, Set<Permission> permissions) {
         this.name = name;
@@ -41,4 +39,8 @@ public class User implements Serializable{
         this.age = age;
         this.permissions = permissions;
     }
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "document_id", referencedColumnName = "id")
+    private Document document;
 }
