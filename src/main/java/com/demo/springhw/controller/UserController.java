@@ -61,21 +61,27 @@ public class UserController {
             return new ResponseObject(System.getenv("status"), "List data", userService.getPageUser(pageParam,sizeParam));
         }
     }
+
+
     //persist, save 1 entity-> save related entity
     @GetMapping("/test-persist")
     public ResponseObject testPersist() {
+        Document b = new Document();
+        b.setDocumentName("persist");
+
         User a = new User();
         a.setAge(12);
         a.setName("persist");
-        Document b = new Document();
-        b.setDocumentName("persist");
         a.setDocument(b);
         userRepository.save(a);
+
         System.out.println(documentRepository.findAll());
         return new ResponseObject("OK", " data", a);
     }
 
-    //persist, save 1 entity-> save related entity
+    //MERGE : Merge trong JPA-Hibernate giúp hợp nhất detached entity với persistent entity có cùng mã
+    // định danh. Cascade.Merge sẽ lan truyền hoạt động này sang các related entity.
+
     @GetMapping("/test-merge")
     public ResponseObject testMerge() {
         User a = new User();
