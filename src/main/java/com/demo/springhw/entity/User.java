@@ -40,7 +40,7 @@ public class User implements Serializable{
         this.permissions = permissions;
     }
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "document_id", referencedColumnName = "id")
     private Document document;
 }

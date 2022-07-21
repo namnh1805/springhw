@@ -96,11 +96,12 @@ public class UserController {
         return new ResponseObject("OK", " data", a);
     }
 
-    @DeleteMapping("/test-remove")
+    //REMOVE: khi một entity bị xóa khởi database thì các related entity cũng bị xóa theo.
+    @GetMapping("/test-remove")
     public ResponseObject testRemove() {
-        User a = userRepository.findById(4);
-        userRepository.delete(a);
-        return new ResponseObject("OK", " data", a);
+        userRepository.deleteById(Long.valueOf(4));
+        System.out.println(documentRepository.findAll());
+        return new ResponseObject("OK", " data","");
     }
 
 }

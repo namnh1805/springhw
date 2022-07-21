@@ -33,7 +33,7 @@ public class Database {
                 Permission permissionC = new Permission("access network");
 
 
-                User userA = new User("Nam Nguyen","admin",17,Set.of(permissionA,permissionB,permissionC));
+                User userA = new User("Nam Nguyen remove","admin",17,Set.of(permissionA,permissionB,permissionC));
                 User userB = new User("Nam Nguyen 2","member",18,Set.of(permissionA,permissionB));
                 User userC = new User("Nam Nguyen 3","super admin",19,Set.of(permissionB,permissionC));
                 User userD = new User("Nam Nguyen 4","sub-admin",20,Set.of(permissionA));
@@ -56,6 +56,7 @@ public class Database {
                 Document document1 = new Document("a");
                 Document document2 = new Document("b");
                 Document document3 = new Document("c");
+                userA.setDocument(document1);
                 logger.info("insert data: "+documentRepository.save(document1));
                 logger.info("insert data: "+documentRepository.save(document2));
                 logger.info("insert data: "+documentRepository.save(document3));
